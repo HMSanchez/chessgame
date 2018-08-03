@@ -4,14 +4,76 @@ kWhite = 0;
 kBlack = 0;
 i=0;
 k=0;
-m = [['b-r','b-kn','b-b','b-q','b-ki','b-b','b-kn','b-r'],
-	['b-p','b-p', 'b-p','b-p','b-p', 'b-p','b-p', 'b-p'],
-	['0','0', '0','0','0', '0','0', '0'],
-	['0','0', '0','0','0', '0','0', '0'],
-	['0','0', '0','0','0', '0','0', '0'],
-	['0','0', '0','0','0', '0','0', '0'],
-	['w-p','w-p', 'w-p','w-p','w-p', 'w-p','w-p', 'w-p'],
-	['w-r','w-kn','w-b','w-q','w-ki','w-b','w-kn','w-r']];
+
+//board and pieces
+m =[];
+
+row1 = []
+row2 = []
+row3 = []
+row4 = []
+row5 = []
+row6 = []
+row7 = []
+row8 = []
+
+zeroCounter =0;
+var spans = document.getElementsByTagName('span');
+
+// Filling each row with appropriate piece name
+for(var i = 0; i< spans.length; i++){
+	// console.log(spans[i].textContent);
+	switch(spans[i].textContent)
+	{
+		case "":
+			if(zeroCounter < 8){
+				row3.push('0');
+				row2.push('b-p');
+				row7.push('w-p');				
+			}else if(zeroCounter > 7 && zeroCounter < 16){
+				row4.push('0');
+			}else if(zeroCounter > 15 && zeroCounter < 24){
+			row5.push('0');
+			}else if(zeroCounter > 23 && zeroCounter < 32){
+			row6.push('0');
+			}
+			zeroCounter++;	
+		break;
+		case String.fromCharCode(9820):
+			row1.push('b-r');
+			row8.push('w-r');
+		break;
+		case String.fromCharCode(9822):
+		row1.push('b-kn');
+		row8.push('w-kn');
+		break;
+		case String.fromCharCode(9821):
+		row1.push('b-b');
+		row8.push('w-b');
+		break;
+		case String.fromCharCode(9819):
+		row1.push('b-q');
+		row8.push('w-q');
+		break;
+		case String.fromCharCode(9818):
+		row1.push('b-ki');
+		row8.push('w-ki');
+		break;
+	}
+
+}
+//Adding each row
+m.push(row1);
+m.push(row2);
+m.push(row3);
+m.push(row4);
+m.push(row5);
+m.push(row6);
+m.push(row7);
+m.push(row8);
+
+console.log(m);
+
 
 function dragStart(ev) {
 	ev.dataTransfer.effectAllowed = 'move';
@@ -163,7 +225,8 @@ function legalMoves() {
 	//get the piece and the targeted position from the matrix in a variable
 	movedPiece = m[i1][j1];
 	targetPosition = m[i2][j2];
-
+	
+	console.log("MP: "+ movedPiece);
 	//if it's not your turn, the move is not allowed
 	if(( i%2 === 0 && colorPiece(dragStartSpanNr) === 'black' ) || ( i%2 === 1 && colorPiece(dragStartSpanNr) === 'white')) {
 		return false;
