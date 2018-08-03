@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Chess 960</title>
+	<link rel="stylesheet" type="text/css" href="css/reset.css">
+	<link rel="stylesheet" type="text/css" href="css/stylesheet.css">
+</head>
+<body>
+	<header>CHESS 960</header>
+	<div id="chess-div" class="chessboard-div"></div>
+	<div class="side-div">
+		<button class="restart"><a href="">Restart</a></button>
+		<div>
+			<div class="move-counter black-move-counter">
+				<p>Player black</p><br>
+				<p class="black-turn">Not your turn</p><br>
+				<p class="black-moves">Moves so far: 0</p>
+			</div>
+			<div class="moved-pieces black-moved-pieces">
+				<ul id="black-ul"><li>Black moves so far:</li></ul>
+			</div>
+			<div class="captured-pieces black-captured-pieces">
+				<p id="black-piece-number">Black captured pieces: 0</p>
+				<p id="black-captured-pieces-p" class="captured-pieces-p"></p>
+			</div>
+		</div>
+		<div class="white-div">
+			<div class="captured-pieces white-captured-pieces">
+				<p id="white-piece-number">White captured pieces: 0</p>
+				<p id="white-captured-pieces-p" class="captured-pieces-p"></p>
+			</div>
+			<div class="move-counter white-move-counter">
+				<p>Player white</p><br>
+				<p class="white-turn">Your turn!</p><br>
+				<p class="white-moves">Moves so far: 0</p>
+			</div>
+			<div class="moved-pieces white-moved-pieces">
+				<ul id="white-ul"><li>White moves so far:</li></ul>
+			</div>
+		</div>
+	</div>
+	<div class="copyright">Copyright @<a href="https://github.com/ZAndreea">ZAndreea</a>, 2015</div>
+	<script type="text/javascript" src="js/addChessboard.js"></script>
+	<script type="text/javascript" src="js/movePieces.js"></script>
+</body>
+</html>
