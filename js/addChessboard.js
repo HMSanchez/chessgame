@@ -1,8 +1,11 @@
-(function addChessboard () {
+(function addChessboard() {
+
+	// Main Table
 	var chessboard = document.getElementById('chess-div');
 	var chessboardTable = document.createElement('table');
 	chessboardTable.className = 'chessboard-table';
 
+	// Top Index Row Creation
 	var tableRow = document.createElement('tr');
 	tableRow.className = 'chessboard-index-row';
 	chessboardTable.appendChild(tableRow);
@@ -10,42 +13,46 @@
 	var letters = [' ', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', ' '];
 	var numbers = ['8', '7', '6', '5', '4', '3', '2', '1'];
 
-	for(i=0; i<10; i++) {
+	// A-H Labels TOP
+	for (i = 0; i < 10; i++) {
 		var tableCell = document.createElement('td');
 		tableCell.className = 'chessboard-index-cell';
 		tableCell.style.backgroundColor = "white";
 		tableRow.appendChild(tableCell);
 		tableCell.textContent = letters[i];
 	}
-	
-	for ( i=0; i<8; i++ ) {
+
+	// 8 x 8 Creation and Piece Placement
+	for (i = 0; i < 8; i++) {
 		var tableRow = document.createElement('tr');
 		tableRow.className = 'chessboard-row';
 		chessboardTable.appendChild(tableRow);
 
+		// Left Row Numbers
 		var tableCell = document.createElement('td');
 		tableCell.className = 'chessboard-index-cell';
 		tableCell.style.backgroundColor = "white";
 		tableRow.appendChild(tableCell);
 		tableCell.textContent = numbers[i];
 
-		for ( j=0; j<8; j++ ) {
-
+		for (j = 0; j < 8; j++) {
+			//Setting each squares' attributes
 			var tableCell = document.createElement('td');
 			tableCell.className = 'chessboard-cell';
-			tableCell.id = letters[j+1] + numbers[i] + '-' + 'td';
+			tableCell.id = letters[j + 1] + numbers[i] + '-' + 'td';
 
-			tableCell.setAttribute('ondragenter','return dragEnter(event)');
-			tableCell.setAttribute('ondragover','return dragOver(event)');
-			tableCell.setAttribute('ondrop','return dragDrop(event)');
-			tableCell.setAttribute('dropOffBoard','snapback');
-			
+			tableCell.setAttribute('ondragenter', 'return dragEnter(event)');
+			tableCell.setAttribute('ondragover', 'return dragOver(event)');
+			tableCell.setAttribute('ondrop', 'return dragDrop(event)');
+			tableCell.setAttribute('dropOffBoard', 'snapback');
+
 
 			tableRow.appendChild(tableCell);
 
+			//Assigning each span where pieces are to be set
 			var span = document.createElement('span');
 			span.className = 'chess-piece-span';
-			span.id = letters[j+1] + numbers[i] + '-' + 'span';
+			span.id = letters[j + 1] + numbers[i] + '-' + 'span';
 
 			span.setAttribute('draggable', 'true');
 			span.setAttribute('ondragstart', 'return dragStart(event)');
@@ -53,6 +60,7 @@
 			tableCell.appendChild(span);
 
 			switch (i) {
+				//Top to bottom indexing
 				case 1:
 					var spanText = document.createTextNode(String.fromCharCode(9823));
 					span.appendChild(spanText);
@@ -62,6 +70,7 @@
 					span.appendChild(spanText);
 					break;
 				case 0:
+					//Row 1 across
 					switch (j) {
 						case 0:
 						case 7:
@@ -90,6 +99,7 @@
 							break;
 					};
 					break;
+					//Row 8 across
 				case 7:
 					switch (j) {
 						case 0:
@@ -116,10 +126,11 @@
 							span.appendChild(spanText);
 							break;
 					};
-				break;
-			};	
+					break;
+			};
 		}
 
+		// Right Row Numbers
 		var tableCell = document.createElement('td');
 		tableCell.className = 'chessboard-index-cell';
 		tableCell.style.backgroundColor = "white";
@@ -127,11 +138,13 @@
 		tableCell.textContent = numbers[i];
 	}
 
+	// Bottom Index Row Creation
 	var tableRow = document.createElement('tr');
 	tableRow.className = 'chessboard-index-row';
 	chessboardTable.appendChild(tableRow);
 
-	for(i=0; i<10; i++) {
+	// A-H Labels BOTTOM
+	for (i = 0; i < 10; i++) {
 		var tableCell = document.createElement('td');
 		tableCell.className = 'chessboard-index-cell';
 		tableCell.style.backgroundColor = "white";
