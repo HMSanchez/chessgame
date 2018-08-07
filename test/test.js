@@ -22,7 +22,7 @@ var chai = require('chai');
 //expect(result).to.have.property(<name>).with.lengthof(<num>);
 //
 //-assert:
-var assertc = chai.assert;
+var assert = chai.assert;
 //assertc.typeOf(func, <type>, <optional message>);
 //assertc.equal(func, <ans>);
 //assertc.lengthOf(func, <num>)
